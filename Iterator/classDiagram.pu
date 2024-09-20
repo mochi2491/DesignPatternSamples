@@ -1,0 +1,35 @@
+@startuml Iterator
+
+class Teacher{
+    +CreateStudentList():void
+    +CallStudent():void
+    -m_studentList:StudentList
+}
+class Student{
+    +Student()
+    -m_name:string
+    -m_sex:Sex
+}
+class MyTeacher{
+    +MyTeacher()
+    +CreateStudentList() override:void
+    +CallStudent() override:void
+    -m_studentList:StudentList
+}
+class StudentList{
+    +StudentList()
+    +StudentList(int studentCount)
+    +Add(const Student&):void
+    +GetStudentAt(int)const:const Student&
+    +GetLastNum() const:int
+}
+class MyStudentList{
+
+}
+
+Teacher <|.. MyTeacher
+Teacher --> StudentList
+StudentList o--Student
+StudentList <|.. MyStudentList
+
+@enduml

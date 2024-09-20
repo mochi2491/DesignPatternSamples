@@ -1,0 +1,12 @@
+BasedOnStyle: Google
+
+#indent
+IndentWidth: 4
+
+AccessModifierOffset: -4
+
+#enum
+AllowShortEnumsOnASingleLine: false
+
+
+AllowShortFunctionsOnASingleLine: Empty
