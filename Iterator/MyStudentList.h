@@ -1,10 +1,11 @@
-#include "Iterator.h"
+#include "Aggregate.h"
 #include "StudentList.h"
 
 namespace Iterator {
-class MyStudentList : public StudentList, Iterator {
+class MyStudentList : public StudentList, Aggregate {
 public:
-    MyStudentList();
-    MyStudentList(int studentCount);
+    MyStudentList() : StudentList() {};
+    MyStudentList(int studentCount) : StudentList(studentCount) {};
+    Iterator* GetIterator();
 };
 }  // namespace Iterator
