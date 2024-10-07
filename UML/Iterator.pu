@@ -1,0 +1,76 @@
+@startuml Iterator
+
+class Teacher{
+    +Teacher()
+    +CreateStudentList():virutal void
+    +CallStudent():virtual void
+    -m_studentList:StudentList
+}
+enum Sex{
+
+}
+class Student{
+    +Student()
+    +~Student()
+    +Student(const std::string& name, Sex sex)
+    +GetName() const : const string&
+    +GetSex() const : Sex
+    -m_name:string
+    -m_sex:Sex
+}
+class MyTeacher{
+    +MyTeacher()
+    +~MyTeacher() override
+    +CreateStudentList() override:void
+    +CallStudent() override:void
+    -m_studentList:MyStudentList
+}
+class StudentList{
+    +StudentList()
+    +StudentList(int studentCount)
+    +~StudentList()
+    +Add(const Student&):void
+    +GetStudentAt(int)const:const Student&
+    +GetLastNum() const:int
+    #m_students:Student*
+    -m_last:int
+}
+package IteratorPattern {
+class MyStudentList{
++MyStudentList()
++~MyStudentList()
++MyStudentList(int studentCount) : StudentList(studentCount){}
++GetIterator() : Iterator*
+}
+
+class MyStudentListIterator {
+    +MyStudentListIterator(MyStudentList list)
+    +~MyStudentListIterator() override
+    +HasNext() override : bool
+    +Next() override : Student*
+    -m_index:int
+    -m_studentList:MyStudentList
+}
+
+interface Iterator {
+    +Iterator()
+    +~Iterator() override
+    +HasNext() : virtual bool
+    +Next() : virtual void*
+}
+
+interface Aggregate {
+    + GetIterator():virtual Iterator*
+}
+}
+Teacher <|.. MyTeacher
+Teacher "1" --> "1" StudentList
+MyTeacher --> MyStudentList
+StudentList "1" o-- "0..*" Student
+MyStudentListIterator --> MyStudentList
+MyStudentListIterator ..|> Iterator
+MyStudentList ..|> Aggregate
+MyStudentList --|> StudentList
+Student ..> Sex
+
+@enduml

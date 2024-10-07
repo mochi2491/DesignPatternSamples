@@ -8,5 +8,7 @@ AccessModifierOffset: -4
 #enum
 AllowShortEnumsOnASingleLine: false
 
+#Initializer list
+PackConstructorInitializers: Never
 
 AllowShortFunctionsOnASingleLine: Empty
